@@ -14,12 +14,13 @@ public class PlayerTest {
     PrintStream printStream;
     Player player;
     BufferedReader bufferedReader;
+    Board board;
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
-        player = new Player(printStream, bufferedReader);
+        player = new Player(printStream, bufferedReader, board);
     }
 
     @Test

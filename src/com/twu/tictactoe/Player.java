@@ -11,10 +11,17 @@ public class Player {
 
     private PrintStream printStream;
     private BufferedReader bufferedReader;
+    private Board board;
 
-    public Player(PrintStream printStream, BufferedReader bufferedReader) {
+    public Player(PrintStream printStream, BufferedReader bufferedReader, Board board) {
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
+        this.board = board;
+    }
+
+    public void markBoard(){
+        promptPlayer();
+        board.redrawBoard(parseInput());
     }
 
     public void promptPlayer() {

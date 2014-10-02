@@ -15,16 +15,11 @@ public class Main {
 
 
         Board board = new Board(printStream);
-        //TODO move out of main
+        //TODO remove from main
         board.drawBlankBoard();
 
-        //TODO move out of main
-        Player player = new Player(printStream, bufferedReader);
-        player.promptPlayer();
-
-        //TODO move out of main
-        int input = player.parseInput();
-        board.redrawBoard(input);
+        Player player = new Player(printStream, bufferedReader, board);
+        player.markBoard();
 
     }
 }
