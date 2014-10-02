@@ -9,11 +9,13 @@ import java.io.PrintStream;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class BoardTest {
 
     PrintStream printStream;
     Board board;
+
 
     @Before
     public void setUp() {
@@ -26,11 +28,43 @@ public class BoardTest {
         board.drawBlankBoard();
 
         InOrder inOrder = Mockito.inOrder(printStream);
-        inOrder.verify(printStream).println("  |   |  ");
-        inOrder.verify(printStream).println("---------");
-        inOrder.verify(printStream).println("  |   |  ");
-        inOrder.verify(printStream).println("---------");
-        inOrder.verify(printStream).println("  |   |  ");
+
+        inOrder.verify(printStream).println
+                ("   |   |   \n" +
+                "-----------\n" +
+                "   |   |   \n" +
+                "-----------\n" +
+                "   |   |   ");
+    }
+
+    @Test
+    public void shouldRedrawWithXInTopCornerWhenUserOneInputIsOne(){
+        int input = 1;
+        board.redrawBoard(input);
+
+        InOrder inOrder = Mockito.inOrder(printStream);
+        inOrder.verify(printStream).println(
+                " X |   |   \n" +
+                "-----------\n" +
+                "   |   |   \n" +
+                "-----------\n" +
+                "   |   |   ");
+
+    }
+
+    @Test
+    public void shouldRedrawWithXInMiddleWhenUserOneInputIsFive(){
+        int input = 5;
+        board.redrawBoard(input);
+
+        InOrder inOrder = Mockito.inOrder(printStream);
+        inOrder.verify(printStream).println(
+                        "   |   |   \n" +
+                        "-----------\n" +
+                        "   | X |   \n" +
+                        "-----------\n" +
+                        "   |   |   ");
+
     }
 
 }
