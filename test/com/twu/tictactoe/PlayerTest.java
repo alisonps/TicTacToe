@@ -25,9 +25,9 @@ public class PlayerTest {
 
     @Test
     public void shouldPromptPlayerOneToMove(){
-        player.promptPlayer();
+        player.promptPlayerOne();
 
-        verify(printStream).println("Player One please enter a location between 1 and 9");
+        verify(printStream).println("Player 1 please enter a location between 1 and 9");
     }
 
     @Test

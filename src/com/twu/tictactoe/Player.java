@@ -20,11 +20,11 @@ public class Player {
     }
 
     public void markBoard(){
-        promptPlayer();
+        promptPlayerOne();
         board.redrawBoard(parseInput());
     }
 
-    public void promptPlayer() {
+    public void promptPlayerOne() {
         printStream.println("Player One please enter a location between 1 and 9");
     }
 
