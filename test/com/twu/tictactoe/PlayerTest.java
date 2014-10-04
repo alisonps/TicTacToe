@@ -27,17 +27,22 @@ public class PlayerTest {
     public void shouldPromptPlayerOneToMove(){
         player.promptPlayerOne();
 
-        verify(printStream).println("Player 1 please enter a location between 1 and 9");
+        verify(printStream).println("Player One please enter a location between 1 and 9");
     }
 
     @Test
-    public void shouldParseInputStringtoInteger() throws IOException {
+    public void shouldPromptPlayerTwoToMove(){
+        player.promptPlayerTwo();
+
+        verify(printStream).println("Player Two please enter a location between 1 and 9");
+    }
+
+    @Test
+    public void shouldParseInputStringToInteger() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
 
         int input = player.parseInput();
 
         assertEquals(1, input);
     }
-
-
 }

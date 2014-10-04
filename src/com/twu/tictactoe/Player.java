@@ -21,7 +21,9 @@ public class Player {
 
     public void markBoard(){
         promptPlayerOne();
-        board.redrawBoard(parseInput());
+        board.redrawBoard(parseInput(), 1);
+        promptPlayerTwo();
+        board.redrawBoard(parseInput(), 2);
     }
 
     public void promptPlayerOne() {
@@ -37,5 +39,9 @@ public class Player {
         }
         Integer input = Integer.parseInt(readLine);
         return input;
+    }
+
+    public void promptPlayerTwo() {
+        printStream.println("Player Two please enter a location between 1 and 9");
     }
 }

@@ -26,8 +26,11 @@ public class Board {
                             "   |   |   ");
     }
 
-    public void redrawBoard(int squareToMark) {
-        boardState[squareToMark - 1] = " X ";
+    public void redrawBoard(int squareToMark, int player) {
+        if (player == 1) boardState[squareToMark - 1] = " X ";
+        else if(player == 2) {
+            boardState[squareToMark - 1] = " O ";
+        }
 
         String board = String.format(
                 "%s|%s|%s\n" +

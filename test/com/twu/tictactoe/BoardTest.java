@@ -40,7 +40,8 @@ public class BoardTest {
     @Test
     public void shouldRedrawWithXInTopCornerWhenUserOneInputIsOne(){
         int input = 1;
-        board.redrawBoard(input);
+        int player = 1;
+        board.redrawBoard(input, player);
 
         InOrder inOrder = Mockito.inOrder(printStream);
         inOrder.verify(printStream).println(
@@ -55,11 +56,32 @@ public class BoardTest {
     @Test
     public void shouldRedrawWithXInMiddleWhenUserOneInputIsFive(){
         int input = 5;
-        board.redrawBoard(input);
+        int player = 1;
+        board.redrawBoard(input, player);
 
         InOrder inOrder = Mockito.inOrder(printStream);
         inOrder.verify(printStream).println(
                         "   |   |   \n" +
+                        "-----------\n" +
+                        "   | X |   \n" +
+                        "-----------\n" +
+                        "   |   |   ");
+
+    }
+
+    @Test
+    public void shouldRedrawWithOInUpperLeftWhenUserTwoInputIsOne(){
+        int input = 5;
+        int player = 1;
+        board.redrawBoard(input, player);
+
+        input = 1;
+        player = 2;
+        board.redrawBoard(input, player);
+
+        InOrder inOrder = Mockito.inOrder(printStream);
+        inOrder.verify(printStream).println(
+                " O |   |   \n" +
                         "-----------\n" +
                         "   | X |   \n" +
                         "-----------\n" +
