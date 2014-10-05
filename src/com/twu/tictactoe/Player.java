@@ -26,13 +26,24 @@ public class Player {
     }
 
     public void markBoard(){
+
         promptPlayer();
-        board.addMark(parseInput(), symbol);
+        boolean successfulMove = board.addMark(parseInput(), symbol);
+        while(!successfulMove) {
+            reportOccupiedSquare();
+            promptPlayer();
+            successfulMove = board.addMark(parseInput(), symbol);
+        }
+
         board.drawBoard();
     }
 
     public void promptPlayer() {
         printStream.println("Player " + playerNumber + " please enter a location between 1 and 9");
+    }
+
+    public void reportOccupiedSquare() {
+        printStream.println("That square was already occupied");
     }
 
     public int parseInput() {

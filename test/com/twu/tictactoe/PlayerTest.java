@@ -21,6 +21,7 @@ public class PlayerTest {
     public void setUp() {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
+        board = mock(Board.class);
         player1 = new Player(printStream, bufferedReader, board, " X ", 1);
         player2 = new Player(printStream, bufferedReader, board, " O ", 2);
     }
@@ -46,5 +47,17 @@ public class PlayerTest {
         int input = player1.parseInput();
 
         assertEquals(1, input);
+    }
+
+    @Test
+    public void shouldPromptPlayerToMoveAgainIfSquareIsFull() throws IOException {
+        when(board.addMark(1, " X ")).thenReturn(false, true);
+        when(bufferedReader.readLine()).thenReturn("1");
+
+        player1.markBoard();
+
+        verify(printStream).println("That square was already occupied");
+
+
     }
 }

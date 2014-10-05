@@ -16,6 +16,7 @@ public class TicTacToeGame {
 
     public void startGame() {
         board.drawBoard();
+
         player1.markBoard();
         player2.markBoard();
     }

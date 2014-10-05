@@ -32,7 +32,12 @@ public class Board {
         printStream.println(board);
     }
 
-    public void addMark(int squareToMark, String mark) {
-        boardState[squareToMark - 1] = mark;
+    public boolean addMark(int squareToMark, String mark) {
+        if(boardState[squareToMark - 1] == "   ") {
+            boardState[squareToMark - 1] = mark;
+            return true;
+        }
+        else return false;
     }
+
 }

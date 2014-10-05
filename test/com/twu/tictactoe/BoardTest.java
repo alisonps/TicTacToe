@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 
 import java.io.PrintStream;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -83,6 +84,16 @@ public class BoardTest {
                         "   | X |   \n" +
                         "-----------\n" +
                         "   |   |   ");
+
+    }
+
+
+    @Test
+    public void shouldNotLetPlayerMoveInOccupiedSpace(){
+        int input = 5;
+        board.addMark(input, " X ");
+
+        assertEquals(false, board.addMark(input, " O "));
 
     }
 
