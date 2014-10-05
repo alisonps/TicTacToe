@@ -1,5 +1,7 @@
 package com.twu.tictactoe;
 
+import sun.awt.Symbol;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -12,22 +14,25 @@ public class Player {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private Board board;
+    private String symbol;
+    private Integer playerNumber;
 
-    public Player(PrintStream printStream, BufferedReader bufferedReader, Board board) {
+    public Player(PrintStream printStream, BufferedReader bufferedReader, Board board, String symbol, int playerNumber) {
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
         this.board = board;
+        this.symbol = symbol;
+        this.playerNumber = playerNumber;
     }
 
     public void markBoard(){
-        promptPlayerOne();
-        board.redrawBoard(parseInput(), 1);
-        promptPlayerTwo();
-        board.redrawBoard(parseInput(), 2);
+        promptPlayer();
+        board.addMark(parseInput(), symbol);
+        board.drawBoard();
     }
 
-    public void promptPlayerOne() {
-        printStream.println("Player One please enter a location between 1 and 9");
+    public void promptPlayer() {
+        printStream.println("Player " + playerNumber + " please enter a location between 1 and 9");
     }
 
     public int parseInput() {
@@ -41,7 +46,4 @@ public class Player {
         return input;
     }
 
-    public void promptPlayerTwo() {
-        printStream.println("Player Two please enter a location between 1 and 9");
-    }
 }

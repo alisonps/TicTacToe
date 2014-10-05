@@ -12,7 +12,8 @@ import static org.mockito.Mockito.when;
 
 public class PlayerTest {
     PrintStream printStream;
-    Player player;
+    Player player1;
+    Player player2;
     BufferedReader bufferedReader;
     Board board;
 
@@ -20,28 +21,29 @@ public class PlayerTest {
     public void setUp() {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
-        player = new Player(printStream, bufferedReader, board);
+        player1 = new Player(printStream, bufferedReader, board, " X ", 1);
+        player2 = new Player(printStream, bufferedReader, board, " O ", 2);
     }
 
     @Test
     public void shouldPromptPlayerOneToMove(){
-        player.promptPlayerOne();
+        player1.promptPlayer();
 
-        verify(printStream).println("Player One please enter a location between 1 and 9");
+        verify(printStream).println("Player 1 please enter a location between 1 and 9");
     }
 
     @Test
     public void shouldPromptPlayerTwoToMove(){
-        player.promptPlayerTwo();
+        player2.promptPlayer();
 
-        verify(printStream).println("Player Two please enter a location between 1 and 9");
+        verify(printStream).println("Player 2 please enter a location between 1 and 9");
     }
 
     @Test
     public void shouldParseInputStringToInteger() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
 
-        int input = player.parseInput();
+        int input = player1.parseInput();
 
         assertEquals(1, input);
     }

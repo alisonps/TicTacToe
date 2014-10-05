@@ -9,7 +9,6 @@ import java.io.PrintStream;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class BoardTest {
 
@@ -25,7 +24,7 @@ public class BoardTest {
 
     @Test
     public void shouldPrintEmptyBoard(){
-        board.drawBlankBoard();
+        board.drawBoard();
 
         InOrder inOrder = Mockito.inOrder(printStream);
 
@@ -40,9 +39,8 @@ public class BoardTest {
     @Test
     public void shouldRedrawWithXInTopCornerWhenUserOneInputIsOne(){
         int input = 1;
-        int player = 1;
-        board.redrawBoard(input, player);
-
+        board.addMark(input, " X ");
+        board.drawBoard();
         InOrder inOrder = Mockito.inOrder(printStream);
         inOrder.verify(printStream).println(
                 " X |   |   \n" +
@@ -56,9 +54,8 @@ public class BoardTest {
     @Test
     public void shouldRedrawWithXInMiddleWhenUserOneInputIsFive(){
         int input = 5;
-        int player = 1;
-        board.redrawBoard(input, player);
-
+        board.addMark(input, " X ");
+        board.drawBoard();
         InOrder inOrder = Mockito.inOrder(printStream);
         inOrder.verify(printStream).println(
                         "   |   |   \n" +
@@ -72,13 +69,13 @@ public class BoardTest {
     @Test
     public void shouldRedrawWithOInUpperLeftWhenUserTwoInputIsOne(){
         int input = 5;
-        int player = 1;
-        board.redrawBoard(input, player);
+
+        board.addMark(input, " X ");
 
         input = 1;
-        player = 2;
-        board.redrawBoard(input, player);
+        board.addMark(input, " O ");
 
+        board.drawBoard();
         InOrder inOrder = Mockito.inOrder(printStream);
         inOrder.verify(printStream).println(
                 " O |   |   \n" +

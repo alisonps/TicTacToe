@@ -18,20 +18,7 @@ public class Board {
         }
     }
 
-    public void drawBlankBoard() {
-        printStream.println("   |   |   \n" +
-                            "-----------\n" +
-                            "   |   |   \n" +
-                            "-----------\n" +
-                            "   |   |   ");
-    }
-
-    public void redrawBoard(int squareToMark, int player) {
-        if (player == 1) boardState[squareToMark - 1] = " X ";
-        else if(player == 2) {
-            boardState[squareToMark - 1] = " O ";
-        }
-
+    public void drawBoard() {
         String board = String.format(
                 "%s|%s|%s\n" +
                 "-----------\n" +
@@ -43,5 +30,9 @@ public class Board {
                 boardState[6], boardState[7], boardState[8]);
 
         printStream.println(board);
+    }
+
+    public void addMark(int squareToMark, String mark) {
+        boardState[squareToMark - 1] = mark;
     }
 }
